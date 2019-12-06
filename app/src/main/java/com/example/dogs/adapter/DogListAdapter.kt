@@ -3,9 +3,11 @@ package com.example.dogs.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogs.R
 import com.example.dogs.model.DogModel
+import com.example.dogs.view.ListFragmentDirections
 import kotlinx.android.synthetic.main.list_item_dog.view.*
 
 class DogListAdapter(val dogList: ArrayList<DogModel>) :RecyclerView.Adapter<DogListAdapter.DogViewHolder>() {
@@ -29,7 +31,10 @@ class DogListAdapter(val dogList: ArrayList<DogModel>) :RecyclerView.Adapter<Dog
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
         holder.view.dogName.text = dogList[position].dogBreed
         holder.view.lifeSpan.text = dogList[position].lifeSpan
+        holder.view.setOnClickListener{
+            Navigation.findNavController(it).navigate(ListFragmentDirections.actionDetailFragment())
+        }
     }
 
-    class DogViewHolder(var view: View) : RecyclerView.ViewHolder(view) {}
+    class DogViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 }

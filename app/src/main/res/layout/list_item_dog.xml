@@ -3,26 +3,48 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:padding="4dp">
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
 
         <TextView
-            android:id="@+id/dogName"
-            style="@style/Title"
+            android:id="@+id/dogId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DogName" />
+            android:visibility="gone"
+            android:text="id"/>
 
-        <TextView
-            android:id="@+id/lifeSpan"
-            style="@style/Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LifeSpan" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:src="@mipmap/ic_dog_icon"
+            android:padding="4dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dogName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Title"
+                android:text="name"/>
+
+            <TextView
+                android:id="@+id/lifeSpan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Text"
+                android:text="lifespan"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
