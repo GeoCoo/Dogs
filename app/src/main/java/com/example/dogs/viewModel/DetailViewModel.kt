@@ -7,10 +7,11 @@ import com.example.dogs.model.DogModel
 
 class DetailViewModel : ViewModel() {
 
-    val dogLiveData = MutableLiveData<List<DogModel>>()
+    val dogLiveData = MutableLiveData<DogModel>()
 
     fun fetch(){
         val dogPug = DogModel("1","pug","15","breedGroup","","","")
+        dogLiveData.value = dogPug
     }
 
 

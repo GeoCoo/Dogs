@@ -11,13 +11,10 @@ class ListViewModel: ViewModel() {
     val loading = MutableLiveData<Boolean>()
 
     fun refresh(){
-        val dogPug = DogModel("1","pug","15","breedGroup","","","")
-        val dogCorgi = DogModel("1","corgi","15","breedGroup","","","")
-        val dogHuskey = DogModel("1","huskey","15","breedGroup","","","")
-        val dogList = arrayListOf(dogCorgi,dogHuskey,dogPug)
 
-        dogs.value = dogList
-        dogLoadError.value = false
-        loading.value = false
+    }
+
+    private fun fetch(){
+        
     }
 }
