@@ -1,5 +1,6 @@
 package com.example.dogs.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogs.R
 import com.example.dogs.model.DogModel
+import com.example.dogs.utils.getProgressDrawable
+import com.example.dogs.utils.loadImage
 import com.example.dogs.view.ListFragmentDirections
 import kotlinx.android.synthetic.main.list_item_dog.view.*
 
@@ -31,6 +34,7 @@ class DogListAdapter(val dogList: ArrayList<DogModel>) :RecyclerView.Adapter<Dog
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
         holder.view.dogName.text = dogList[position].dogBreed
         holder.view.lifeSpan.text = dogList[position].lifeSpan
+        holder.view.imageView.loadImage(dogList[position].imgUrl, getProgressDrawable(holder.view.imageView.context))
         holder.view.setOnClickListener{
             Navigation.findNavController(it).navigate(ListFragmentDirections.actionDetailFragment())
         }
