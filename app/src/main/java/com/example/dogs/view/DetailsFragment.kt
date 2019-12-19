@@ -1,6 +1,7 @@
 package com.example.dogs.view
 
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import androidx.navigation.NavGraph
 import androidx.navigation.Navigation
 
 import com.example.dogs.R
+import com.example.dogs.utils.getProgressDrawable
+import com.example.dogs.utils.loadImage
 import com.example.dogs.viewModel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_details.*
 
@@ -31,10 +34,10 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
         arguments?.let {
             dogUuid = DetailsFragmentArgs.fromBundle(it).dogUuid
         }
+        viewModel.fetch(dogUuid)
 
         observeViewModel()
     }
@@ -46,6 +49,7 @@ class DetailsFragment : Fragment() {
             dogPurpose.text = dog.breadFor
             dogTemperament.text = dog.temperament
             dogLifespan.text = dog.lifeSpan
+            context?.let {dogImg.loadImage(dog.imgUrl, getProgressDrawable(it))}
         }
         })
     }
