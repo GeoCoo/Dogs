@@ -3,10 +3,8 @@ package com.example.dogs.view
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ListView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,7 +29,7 @@ class ListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
@@ -62,7 +60,7 @@ class ListFragment : Fragment() {
             }
         })
         viewModel.dogLoadError.observe(this, Observer { isError ->
-            isError?.let { errorMsg.visibility = if(it) View.VISIBLE else View.GONE }
+            isError?.let { errorMsg.visibility = if (it) View.VISIBLE else View.GONE }
         })
 
         viewModel.loading.observe(this, Observer { isLoading ->
@@ -75,5 +73,20 @@ class ListFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_settings -> {
+                view?.let { Navigation.findNavController(it)
+                    .navigate(ListFragmentDirections.actionSettings2())}
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
