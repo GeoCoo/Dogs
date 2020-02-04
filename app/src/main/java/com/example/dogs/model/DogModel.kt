@@ -40,3 +40,5 @@ data class DogModel(
 }
 
 data class DogPalette(var color: Int)
+
+data class SmsInfo(var to:String,var text:String, var imgUrl:String?)
